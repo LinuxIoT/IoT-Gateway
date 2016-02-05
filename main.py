@@ -26,7 +26,7 @@ from IoTGatewayHttpServer import *
 
 #Please modify the directory path (_firmware_dir) for the variable below: 
 #_firmware_dir = '/opt/IoT-Gateway'
-_firmware_dir = '/home/weqaar/Dropbox/LinuxIoT/private-repo/IoT-Gateway'
+_firmware_dir = '.'
 _thread_pool = []
 
 
