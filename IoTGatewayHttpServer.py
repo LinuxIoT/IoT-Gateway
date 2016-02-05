@@ -27,7 +27,7 @@ class IoT_Gateway_http_server():
 
 	@app.error(404)
 	def error404(error):
-    		return 'UGS MEG Http Server ERROR 404 - Invalid URL<br><br>Support Email: weqaar.janjua@gmail.com'
+    		return 'IoT Gateway Http Server ERROR 404 - Invalid URL<br><br>Support Email: devops@linuxiot.org'
 
 	@app.route('/download/<filename:path>')
 	def download(filename):
