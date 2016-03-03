@@ -7,16 +7,16 @@ import multiprocessing
 import logging
 import logging.handlers
 from sysconfigx import *
-from FILTER_queue_singleton_low_latency import *
-from FILTER_queue_singleton_high_latency import *
+from CC_queue_HL import *
+from CC_queue_LL import *
 
 class ZMQ_Functions():
 
 	def __init__(self):
 		global FILTER_queue_low_latency
 		global FILTER_queue_high_latency
-		FILTER_queue_low_latency = outbound_FILTER_queue_low_latency()
-		FILTER_queue_high_latency = outbound_FILTER_queue_high_latency()
+		FILTER_queue_low_latency = CC_OUT_LL()
+		FILTER_queue_high_latency = CC_OUT_HL()
 
 		global _data
 		global _publisher_port_low_latency
@@ -66,6 +66,7 @@ class ZMQ_Functions():
 		
 	def process_data_low_latency(self):
 		if(FILTER_queue_low_latency.is_empty() is True):
+                        print "LL EMPTY!!!"
 			pass
 		else: 
 			FILTER_queue_low_latency.get_lock()
@@ -84,9 +85,11 @@ class ZMQ_Functions():
 		_zmq_socket_high_latency.bind("tcp://*:%s" % _publisher_port_high_latency)
 
 	def process_data_high_latency(self):
+		#print "PPPPPPPPPPPPPPPP:" + str(FILTER_queue_high_latency.get())
 		if(FILTER_queue_high_latency.is_empty() is True):
-			pass
-		else: 
+                        print "HL EMPTY!!!"
+			#pass
+		else: 	
 			FILTER_queue_high_latency.get_lock()
 			_data_high_latency = FILTER_queue_high_latency.get()
 			FILTER_queue_high_latency.release_lock()
