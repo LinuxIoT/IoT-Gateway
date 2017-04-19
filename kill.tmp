@@ -1,1 +1,0 @@
-for _proc in `sudo pgrep sudo`; do kill -9 $_proc; done

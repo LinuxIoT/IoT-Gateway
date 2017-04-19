@@ -1,2 +1,0 @@
-flextls
-Sphinx==1.2.2
